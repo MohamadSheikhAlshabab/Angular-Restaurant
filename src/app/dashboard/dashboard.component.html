@@ -1,0 +1,141 @@
+<div class="modal-overlay" id="modal-overlay"></div>
+<div class="container-fluid page">
+  <div class="d-flex page__box justify-content-between align-items-center">
+
+
+    <div class="d-flex page__box p-3 mt-2">Dashboard</div>
+    <div class="mr-2">
+      <!-- ?modal222 -->
+      <div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="open-button">
+          add items
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Items</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="formData" (submit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="id">Id</label>
+                    <input type="text" formControlName="id" class="form-control" id="Id" aria-describedby="IdHelp"
+                      placeholder="Item's Id">
+                  </div>
+                  <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" formControlName="name" class="form-control" id="Name" aria-describedby="NameHelp"
+                      placeholder="Item's Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="Price">Price</label>
+                    <input type="text" formControlName="price" class="form-control" id="Price"
+                      aria-describedby="PriceHelp" placeholder="Item's Price">
+                  </div>
+                  <div class="form-group">
+                    <label for="Description">Description</label>
+                    <input type="text" formControlName="description" class="form-control" id="Description"
+                      aria-describedby="DescriptionHelp" placeholder="Item's Description">
+                  </div>
+                  <div class="form-group">
+                    <label for="Image">Image</label>
+                    <input type="text" formControlName="image" class="form-control" id="Image"
+                      aria-describedby="ImageHelp" placeholder="Item's Image">
+                  </div>
+                  <div class="form-group">
+                    <label for="Link">Link</label>
+                    <input type="text" formControlName="link" class="form-control" id="Link" aria-describedby="LinkHelp"
+                      placeholder="Item's Link">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                      id="close-button">Close</button>
+                    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Add Details</button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ?modal2222 -->
+    </div>
+
+
+  </div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="page__content-data position-absolute text-center">
+      <table class="table table-bordered table-hover table-sm table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="name">name</th>
+            <th scope="col" class="price">price</th>
+            <th scope="col" class="description">description</th>
+            <th scope="col" class="image">image</th>
+            <th scope="col" class="link">link</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="Rows">
+          <tr>
+
+            <td scope="row" class="name">Burger
+
+            </td>
+            <td scope="row" class="price">100$
+
+            </td>
+            <td scope="row" class="description">delicious burger
+
+            </td>
+            <td scope="row" class="image img-thumbnail img-fluid rounded mx-auto d-block"><img
+                src="../../assets/burger.jpeg" alt="">
+
+            </td>
+            <td scope="row" class="link">burger.jpeg
+
+            </td>
+            <td>
+              <button class="btn btn-info" *ngIf="formData.controls.Rows.controls.length > 1"
+                (click)="deleteRow(i)">Edit</button>
+            </td>
+            <td>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          <tr *ngFor="let itemrow of formData.controls.Rows; let i=index;let l=last" [formGroupName]="i">
+            <td>
+              {{i+1}}
+            </td>
+            <td>
+              <input type="text" class="name" formControlName="name">
+            </td>
+            <td>
+              <input type="text" class="price" formControlName="price">
+            </td>
+            <td>
+              <input type="text" class="description" formControlName="description">
+            </td>
+            <td>
+              <input type="text" class="image" formControlName="image">
+            </td>
+            <td>
+              <input type="text" class="link" formControlName="link">
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <pre>{{formData.value | json}}</pre>
+
+    </div>
+  </div>
+</div>

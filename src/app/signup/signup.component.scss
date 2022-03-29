@@ -1,0 +1,15 @@
+.container{
+    position: relative;
+}
+
+.card{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(35%, 50%);
+    padding: 2rem;
+    margin: -8rem;
+}
+span{
+    color: red;
+}
